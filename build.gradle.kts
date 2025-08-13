@@ -8,7 +8,7 @@ plugins {
   id("java-gradle-plugin")
   id("maven-publish")
   id("com.github.ben-manes.versions") version "0.52.0"
-  id("se.patrikerdes.use-latest-versions") version "0.2.18"
+  id("se.patrikerdes.use-latest-versions") version "0.2.19"
   // This is not using the latest version due to https://github.com/jeremylong/DependencyCheck?tab=readme-ov-file#the-nvd-api-key-ci-and-rate-limiting
   id("org.owasp.dependencycheck") version "8.4.3"
   id("com.adarshr.test-logger") version "4.0.0"
@@ -31,7 +31,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "8.3.4"
+version = "8.3.5"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/hmpps-gradle-spring-boot")
@@ -59,12 +59,12 @@ dependencies {
   implementation("com.github.ben-manes:gradle-versions-plugin:0.52.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.5.2")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:4.0.0")
-  implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.18")
+  implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.19")
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:13.0.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.13.4")
   testImplementation("org.mockito:mockito-junit-jupiter:5.18.0")
-  testImplementation("org.assertj:assertj-core:3.27.3")
+  testImplementation("org.assertj:assertj-core:3.27.4")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:4.1.1")
   testImplementation("com.google.code.gson:gson:2.13.1")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:7.3.0.202506031305-r")
