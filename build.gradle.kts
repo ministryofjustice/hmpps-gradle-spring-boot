@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "2.2.0"
+  kotlin("jvm") version "2.2.10"
   id("com.gradle.plugin-publish") version "1.3.1"
   id("java-gradle-plugin")
   id("maven-publish")
@@ -31,7 +31,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "8.3.5"
+version = "8.3.6"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/hmpps-gradle-spring-boot")
@@ -63,7 +63,7 @@ dependencies {
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:13.0.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.13.4")
-  testImplementation("org.mockito:mockito-junit-jupiter:5.18.0")
+  testImplementation("org.mockito:mockito-junit-jupiter:5.19.0")
   testImplementation("org.assertj:assertj-core:3.27.4")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:4.1.1")
   testImplementation("com.google.code.gson:gson:2.13.1")
