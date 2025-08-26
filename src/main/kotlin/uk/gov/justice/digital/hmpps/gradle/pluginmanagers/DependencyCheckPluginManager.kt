@@ -30,6 +30,9 @@ class DependencyCheckPluginManager(override val project: Project) : PluginManage
     extension.suppressionFiles = mutableListOf(DEPENDENCY_SUPPRESSION_FILENAME)
     extension.format = ReportGenerator.Format.ALL.name
     extension.analyzers.assemblyEnabled = false
+    if (extension.nvd.datafeedUrl == null && project.hasProperty("datafeed.url")) {
+      extension.nvd.datafeedUrl = project.property("datafeed.url").toString()
+    }
   }
 
   private fun addDependencyCheckSuppressionFile() {
