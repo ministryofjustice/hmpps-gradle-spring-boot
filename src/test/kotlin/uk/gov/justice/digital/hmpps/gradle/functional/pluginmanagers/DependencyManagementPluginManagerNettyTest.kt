@@ -14,8 +14,7 @@ import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 import java.util.jar.JarFile
 
-class DependencyManagementPluginManagerNettyTest : GradleBuildTest()  {
-
+class DependencyManagementPluginManagerNettyTest : GradleBuildTest() {
 
   companion object {
     @JvmStatic
