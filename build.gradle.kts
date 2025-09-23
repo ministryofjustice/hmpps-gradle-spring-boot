@@ -9,7 +9,7 @@ plugins {
   id("maven-publish")
   id("com.github.ben-manes.versions") version "0.52.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.19"
-  id("org.owasp.dependencycheck") version "12.1.3"
+  id("org.owasp.dependencycheck") version "12.1.5"
   id("com.adarshr.test-logger") version "4.0.0"
   id("org.jlleitschuh.gradle.ktlint") version "13.1.0"
 }
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "9.0.2"
+version = "9.1.0"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/hmpps-gradle-spring-boot")
@@ -53,8 +53,8 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-gradle-plugin:3.5.6")
   implementation(kotlin("gradle-plugin"))
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.7")
-  implementation("org.owasp:dependency-check-core:12.1.3")
-  implementation("org.owasp:dependency-check-gradle:12.1.3")
+  implementation("org.owasp:dependency-check-core:12.1.5")
+  implementation("org.owasp:dependency-check-gradle:12.1.5")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.52.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.5.3")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:4.0.0")
@@ -62,8 +62,8 @@ dependencies {
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:13.1.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:5.13.4")
-  testImplementation("org.mockito:mockito-junit-jupiter:5.19.0")
-  testImplementation("org.assertj:assertj-core:3.27.4")
+  testImplementation("org.mockito:mockito-junit-jupiter:5.20.0")
+  testImplementation("org.assertj:assertj-core:3.27.6")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:4.1.1")
   testImplementation("com.google.code.gson:gson:2.13.2")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:7.3.0.202506031305-r")

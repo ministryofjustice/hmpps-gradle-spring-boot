@@ -33,6 +33,19 @@ class DependencyCheckPluginManager(override val project: Project) : PluginManage
     if (extension.nvd.datafeedUrl == null && project.hasProperty("datafeed.url")) {
       extension.nvd.datafeedUrl = project.property("datafeed.url").toString()
     }
+    if (extension.analyzers.ossIndex.username.isNullOrBlank()) {
+      if (project.hasProperty("ossIndex.username") && project.hasProperty("ossIndex.password")) {
+        project.logger.info("Setting OSS Index username and password from project properties.")
+        extension.analyzers.ossIndex.username = project.property("ossIndex.username") as String
+        extension.analyzers.ossIndex.password = project.property("ossIndex.password") as String
+      } else {
+        project.logger.warn(
+          """Authentication is required to use Sonatype OSS Index Analyzer.
+            |Please set ossIndex.username / ossIndex.password project properties.
+          """.trimMargin(),
+        )
+      }
+    }
   }
 
   private fun addDependencyCheckSuppressionFile() {
