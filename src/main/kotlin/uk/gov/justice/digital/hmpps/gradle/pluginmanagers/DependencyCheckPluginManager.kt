@@ -26,24 +26,18 @@ class DependencyCheckPluginManager(override val project: Project) : PluginManage
 
   private fun setDependencyCheckConfig() {
     val extension = project.extensions.getByName("dependencyCheck") as DependencyCheckExtension
-    extension.failBuildOnCVSS = 5f
-    extension.suppressionFiles = mutableListOf(DEPENDENCY_SUPPRESSION_FILENAME)
-    extension.format = ReportGenerator.Format.ALL.name
-    extension.analyzers.assemblyEnabled = false
-    if (extension.nvd.datafeedUrl == null && project.hasProperty("datafeed.url")) {
-      extension.nvd.datafeedUrl = project.property("datafeed.url").toString()
+    extension.failBuildOnCVSS.set(5f)
+    extension.suppressionFiles.set(mutableListOf(DEPENDENCY_SUPPRESSION_FILENAME))
+    extension.format.set(ReportGenerator.Format.ALL.name)
+    extension.analyzers.assemblyEnabled.set(false)
+    if (extension.nvd.datafeedUrl.isPresent.not() && project.hasProperty("datafeed.url")) {
+      extension.nvd.datafeedUrl.set(project.property("datafeed.url").toString())
     }
-    if (extension.analyzers.ossIndex.username.isNullOrBlank()) {
+    if (extension.analyzers.ossIndex.username.isPresent.not()) {
       if (project.hasProperty("ossIndex.username") && project.hasProperty("ossIndex.password")) {
         project.logger.info("Setting OSS Index username and password from project properties.")
-        extension.analyzers.ossIndex.username = project.property("ossIndex.username") as String
-        extension.analyzers.ossIndex.password = project.property("ossIndex.password") as String
-      } else {
-        project.logger.warn(
-          """Authentication is required to use Sonatype OSS Index Analyzer.
-            |Please set ossIndex.username / ossIndex.password project properties.
-          """.trimMargin(),
-        )
+        extension.analyzers.ossIndex.username.set(project.property("ossIndex.username") as String)
+        extension.analyzers.ossIndex.password.set(project.property("ossIndex.password") as String)
       }
     }
   }
@@ -56,7 +50,7 @@ class DependencyCheckPluginManager(override val project: Project) : PluginManage
 
   private fun checkOverriddenSuppressionFile() {
     val extension = project.extensions.getByName("dependencyCheck") as DependencyCheckExtension
-    if (extension.suppressionFiles.isNotEmpty() && extension.suppressionFiles.contains(DEPENDENCY_SUPPRESSION_FILENAME).not()) {
+    if (extension.suppressionFiles.isPresent && extension.suppressionFiles.get().contains(DEPENDENCY_SUPPRESSION_FILENAME).not()) {
       project.logger.warn(
         """
         
