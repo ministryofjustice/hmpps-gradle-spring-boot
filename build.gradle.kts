@@ -67,8 +67,9 @@ dependencies {
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:5.1.0")
   testImplementation("com.google.code.gson:gson:2.13.2")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:7.4.0.202509020913-r")
+  testImplementation("org.awaitility:awaitility-kotlin:4.3.0")
 
-  testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.12.2")
+  testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.0.1")
 }
 
 tasks {

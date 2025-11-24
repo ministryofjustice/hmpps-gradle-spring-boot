@@ -1,6 +1,7 @@
 package uk.gov.justice.digital.hmpps.gradle.functional.pluginmanagers
 
 import net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson
+import org.awaitility.kotlin.await
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -12,6 +13,7 @@ import java.io.File
 import java.net.URI
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.concurrent.TimeUnit
 
 class JavaSpringBootPluginManagerJarTest : SpringBootPluginManagerJarTest() {
 
@@ -54,8 +56,9 @@ abstract class SpringBootPluginManagerJarTest {
 
   @Test
   fun `Spring Boot jar is up and healthy`() {
-    val healthResponse = URI.create("http://localhost:8080/actuator/health").toURL().readText()
-    assertThatJson(healthResponse).node("status").isEqualTo("UP")
+    await.atMost(5, TimeUnit.SECONDS).untilAsserted {
+      assertThatJson(URI.create("http://localhost:8080/actuator/health").toURL().readText()).node("status").isEqualTo("UP")
+    }
   }
 
   @Test
