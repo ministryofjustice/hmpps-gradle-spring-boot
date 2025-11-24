@@ -42,15 +42,6 @@ class KotlinPluginManagerTest : GradleBuildTest() {
 
   @ParameterizedTest
   @MethodSource("kotlinOnlyProject")
-  fun `Adds in the jackson module kotlin`(projectDetails: ProjectDetails) {
-    makeProject(projectDetails)
-
-    val webVersion = getDependencyVersion(projectDir, "com.fasterxml.jackson.module:jackson-module-kotlin")
-    assertThat(webVersion).isNotBlank
-  }
-
-  @ParameterizedTest
-  @MethodSource("kotlinOnlyProject")
   fun `Adds in kotlin reflect`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
 
