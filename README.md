@@ -11,6 +11,7 @@ This Gradle plugin is used to orchestrate HMPPS Spring Boot projects such that:
 This plugin targets Spring Boot 3.  See the `spring-boot-2` branch for the Spring Boot 2 version.
 
 ## Release Notes
+##### [10.x](release-notes/10.x.md)
 ##### [9.x](release-notes/9.x.md)
 ##### [8.x](release-notes/8.x.md)
 ##### [7.x](release-notes/7.x.md)
@@ -27,7 +28,7 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "9.2.0"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "10.0.0"
   ...
 }
 ```

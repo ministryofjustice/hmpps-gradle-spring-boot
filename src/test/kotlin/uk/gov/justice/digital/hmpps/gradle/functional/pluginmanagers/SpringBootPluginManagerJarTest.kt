@@ -9,7 +9,7 @@ import uk.gov.justice.digital.hmpps.gradle.functional.createAndRunJar
 import uk.gov.justice.digital.hmpps.gradle.functional.javaProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
 import java.io.File
-import java.net.URL
+import java.net.URI
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -54,24 +54,24 @@ abstract class SpringBootPluginManagerJarTest {
 
   @Test
   fun `Spring Boot jar is up and healthy`() {
-    val healthResponse = URL("http://localhost:8080/actuator/health").readText()
+    val healthResponse = URI.create("http://localhost:8080/actuator/health").toURL().readText()
     assertThatJson(healthResponse).node("status").isEqualTo("UP")
   }
 
   @Test
   fun `Spring Boot info endpoint is available`() {
-    URL("http://localhost:8080/actuator/info").readText()
+    URI.create("http://localhost:8080/actuator/info").toURL().readText()
   }
 
   @Test
   fun `Spring Boot info endpoint contains git info`() {
-    val infoResponse = URL("http://localhost:8080/actuator/info").readText()
+    val infoResponse = URI.create("http://localhost:8080/actuator/info").toURL().readText()
     assertThatJson(infoResponse).node("git.branch").isNotNull
   }
 
   @Test
   fun `Spring Boot info endpoint contains build info`() {
-    val infoResponse = URL("http://localhost:8080/actuator/info").readText()
+    val infoResponse = URI.create("http://localhost:8080/actuator/info").toURL().readText()
     assertThatJson(infoResponse).node("build.by").isEqualTo(System.getProperty("user.name"))
     assertThatJson(infoResponse).node("build.operatingSystem").isNotNull
     assertThatJson(infoResponse).node("build.machine").isNotNull
