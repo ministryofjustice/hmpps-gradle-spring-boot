@@ -8,8 +8,8 @@ permissions:
   packages: write
 concurrency:
   # only cancel in progress when on a branch - use SHA on main to ensure uniqueness
-  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.sha || github.ref }}
-  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+  group: ${{ github.workflow }}-${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/spring-boot-3') && github.sha || github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/spring-boot-3' }}
 jobs:
   gradle_verify:
     name: Run the tests
@@ -18,7 +18,7 @@ jobs:
 
   publish:
     name: Publish the artifact
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/spring-boot-3'
     uses: ./.github/workflows/publish.yml # LOCAL_VERSION
     secrets: inherit
     needs:
