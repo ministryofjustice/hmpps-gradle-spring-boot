@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "10.0.0-beta-4"
+version = "10.0.0"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/hmpps-gradle-spring-boot")
