@@ -50,7 +50,7 @@ gradlePlugin {
 dependencies {
   implementation(kotlin("reflect"))
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:4.0.1")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:4.0.2")
   implementation(kotlin("gradle-plugin"))
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.7")
   implementation("org.owasp:dependency-check-core:12.1.9")
