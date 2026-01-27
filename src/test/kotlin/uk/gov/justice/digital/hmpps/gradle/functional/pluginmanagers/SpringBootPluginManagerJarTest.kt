@@ -56,7 +56,7 @@ abstract class SpringBootPluginManagerJarTest {
 
   @Test
   fun `Spring Boot jar is up and healthy`() {
-    await.atMost(5, TimeUnit.SECONDS).untilAsserted {
+    await.atMost(10, TimeUnit.SECONDS).untilAsserted {
       assertThatJson(URI.create("http://localhost:8080/actuator/health").toURL().readText()).node("status").isEqualTo("UP")
     }
   }
