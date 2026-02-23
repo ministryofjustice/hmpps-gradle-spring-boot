@@ -10,6 +10,7 @@ import uk.gov.justice.digital.hmpps.gradle.functional.createAndRunJar
 import uk.gov.justice.digital.hmpps.gradle.functional.javaProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
 import java.io.File
+import java.io.IOException
 import java.net.URI
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -56,7 +57,7 @@ abstract class SpringBootPluginManagerJarTest {
 
   @Test
   fun `Spring Boot jar is up and healthy`() {
-    await.atMost(10, TimeUnit.SECONDS).untilAsserted {
+    await.atMost(5, TimeUnit.SECONDS).ignoreException(IOException::class.java).untilAsserted {
       assertThatJson(URI.create("http://localhost:8080/actuator/health").toURL().readText()).node("status").isEqualTo("UP")
     }
   }

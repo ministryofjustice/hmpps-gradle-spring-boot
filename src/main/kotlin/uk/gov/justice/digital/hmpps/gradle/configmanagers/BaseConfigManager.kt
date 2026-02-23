@@ -40,6 +40,6 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
 
   private fun setJunit5() {
     project.tasks.withType(Test::class.java) { it.useJUnitPlatform() }
-    project.dependencies.add("testRuntimeOnly", "org.junit.platform:junit-platform-launcher:6.0.1")
+    project.dependencies.add("testRuntimeOnly", "org.junit.platform:junit-platform-launcher:6.0.3")
   }
 }
