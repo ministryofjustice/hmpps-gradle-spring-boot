@@ -27,7 +27,7 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "9.3.0"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "9.4.0"
   ...
 }
 ```
@@ -178,7 +178,8 @@ A new version may be needed for a few different reasons:
    3. Additional testing can be done with [Dependency Update Checks](#dependency-update-checks)
 7. Upgrade all the dependencies in `build.gradle.kts` by running the following Gradle task: `./gradlew useLatestVersions`
    1. If you are using IntelliJ it can be found by going to _Gradle -> hmpps-gradle-spring-boot -> Tasks -> help -> useLatestVersions_
-8. Review the pinned versions in `KotlinPluginManager`, `AppInsightsConfigManager`, and any others
+8. Run `VersionsPluginManagerTest` (see [How to check if dependencies applied by the HMPPS plugin are up to date](#how-to-check-if-dependencies-applied-by-the-hmpps-plugin-are-up-to-date)) and apply the suggested dependency updates where relevant
+9. Review the pinned versions in `KotlinPluginManager`, `AppInsightsConfigManager`, and any others
    1. You may need to manually bump, or remove them if they are no longer required
 
 ### Testing locally

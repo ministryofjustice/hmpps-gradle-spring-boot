@@ -14,7 +14,6 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
   override fun configure() {
     applyDependencyManagementBom(project)
     project.extensions.extraProperties["opentelemetry.version"] = OPENTELEMETRY_VERSION
-    project.extensions.extraProperties["logback.version"] = "1.5.19"
   }
 
   private fun applyDependencyManagementBom(project: Project) {
