@@ -19,11 +19,11 @@ class DependencyManagementPluginManagerJacksonTest : GradleBuildTest() {
   companion object {
     @JvmStatic
     fun wrongTransitiveJacksonVersion() = listOf(
-      arguments(javaProjectDetails(projectDir).copy(buildScript = wrongTransitiveLogbackVersionBuildFile)),
-      arguments(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveLogbackVersionBuildFile)),
+      arguments(javaProjectDetails(projectDir).copy(buildScript = wrongTransitiveJacksonVersionBuildFile)),
+      arguments(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveJacksonVersionBuildFile)),
     )
 
-    private val wrongTransitiveLogbackVersionBuildFile = """
+    private val wrongTransitiveJacksonVersionBuildFile = """
       plugins {
         id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
       }
