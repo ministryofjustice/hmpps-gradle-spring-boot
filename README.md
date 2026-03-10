@@ -108,6 +108,9 @@ You can run the test with command:
 ```
 and check the report generated at `build/dependencyUpdates/projectsUsingPlugin/report.txt`
 
+Note this may suggest some upgrades on transitive dependencies we generally don't override, leaving it to the relevant non-transitive dependency in question to upgrade. This includes:
+* `ktlint-cli`, `ktlint-cli-reporter-baseline`, `ktlint-ruleset-standard`, `sarif4k` and `kotlin-logging` - these come from `org.jlleitschuh.gradle.ktlint.gradle.plugin`
+
 ## Testing the plugin locally on other projects
 
 * Firstly bump the version of the plugin.
