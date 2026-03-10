@@ -57,22 +57,6 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
-    Suppressed as attacher needs to have write access to the configuration or be able to manipulate environment variables
-   file name: logback-core-1.5.12.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/ch\.qos\.logback/logback\-core@.*$</packageUrl>
-    <vulnerabilityName>CVE-2024-12798</vulnerabilityName>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    Suppressed as attacher needs to have write access to the configuration or be able to manipulate environment variables
-   file name: logback-core-1.5.12.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/ch\.qos\.logback/logback\-core@.*$</packageUrl>
-    <vulnerabilityName>CVE-2024-12801</vulnerabilityName>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
     Suppressed as attacker needs a valid auth token to exploit JSON parsing DoS
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/com\.nimbusds/nimbus\-jose\-jwt@.*$</packageUrl>
