@@ -14,6 +14,10 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
   override fun configure() {
     applyDependencyManagementBom(project)
     project.extensions.extraProperties["opentelemetry.version"] = OPENTELEMETRY_VERSION
+    // temporarily pinning the version to address CVE-2026-29062 until other dependencies are updated accordingly
+    project.extensions.extraProperties["jackson-bom.version"] = JACKSON_VERSION
+    // temporarily pinning the version to address GHSA-72hv-8253-57qq until other dependencies are updated accordingly
+    project.extensions.extraProperties["jackson-2-bom.version"] = JACKSON2_VERSION
   }
 
   private fun applyDependencyManagementBom(project: Project) {
