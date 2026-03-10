@@ -29,13 +29,14 @@ class DependencyManagementPluginManagerJacksonTest : GradleBuildTest() {
       }
       dependencies {
         implementation("com.fasterxml.jackson.core:jackson-core")
+        implementation("tools.jackson.core:jackson-core")
       }
     """.trimIndent()
   }
 
   @ParameterizedTest
   @MethodSource("wrongTransitiveJacksonVersion")
-  fun `Wrong transitive version of jackson should be overridden by the plugin`(projectDetails: ProjectDetails) {
+  fun `Wrong transitive version of jackson 2 should be overridden by the plugin`(projectDetails: ProjectDetails) {
     makeProject(projectDetails.copy())
 
     val result = buildProject(projectDir, "bootJar")
@@ -46,5 +47,20 @@ class DependencyManagementPluginManagerJacksonTest : GradleBuildTest() {
     assertThat(jarContents)
       .doesNotContain("BOOT-INF/lib/jackson-core-2.19.4.jar")
       .contains("BOOT-INF/lib/jackson-core-2.21.1.jar")
+  }
+
+  @ParameterizedTest
+  @MethodSource("wrongTransitiveJacksonVersion")
+  fun `Wrong transitive version of jackson 3 should be overridden by the plugin`(projectDetails: ProjectDetails) {
+    makeProject(projectDetails.copy())
+
+    val result = buildProject(projectDir, "bootJar")
+    assertThat(result.task(":bootJar")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
+
+    val file = findJar(projectDir, projectDetails.projectName)
+    val jarContents = JarFile(file).versionedStream().map { it.name }.toList()
+    assertThat(jarContents)
+      .doesNotContain("BOOT-INF/lib/jackson-core-3.0.4.jar")
+      .contains("BOOT-INF/lib/jackson-core-3.1.0.jar")
   }
 }
