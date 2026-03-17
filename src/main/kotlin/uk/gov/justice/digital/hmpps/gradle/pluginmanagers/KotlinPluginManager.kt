@@ -28,6 +28,9 @@ class KotlinPluginManager(override val project: Project) : PluginManager {
     project.dependencies.add("implementation", "com.fasterxml.jackson.module:jackson-module-kotlin:$JACKSON2_VERSION")
     project.dependencies.add("implementation", "org.jetbrains.kotlin:kotlin-reflect")
 
+    // Temporarily bump swagger-ui to 5.32.1 for CVE-2026-0540 and CVE-2025-15599
+    project.dependencies.constraints.add("implementation", "org.webjars:swagger-ui:5.32.1")
+
     project.dependencies.add("testImplementation", "org.mockito.kotlin:mockito-kotlin:6.2.3")
   }
 }
