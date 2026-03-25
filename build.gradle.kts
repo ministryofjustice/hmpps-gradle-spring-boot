@@ -4,14 +4,14 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   kotlin("jvm") version "2.3.10"
-  id("com.gradle.plugin-publish") version "2.1.0"
+  id("com.gradle.plugin-publish") version "2.1.1"
   id("java-gradle-plugin")
   id("maven-publish")
   id("com.github.ben-manes.versions") version "0.53.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.19"
   id("org.owasp.dependencycheck") version "12.2.0"
   id("com.adarshr.test-logger") version "4.0.0"
-  id("org.jlleitschuh.gradle.ktlint") version "14.1.0"
+  id("org.jlleitschuh.gradle.ktlint") version "14.2.0"
 }
 
 repositories {
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "9.5.0"
+version = "9.6.0"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/hmpps-gradle-spring-boot")
@@ -53,7 +53,7 @@ dependencies {
   // have to not use implementation(kotlin("gradle-plugin")) syntax here otherwise useLatestVersions fails
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.10")
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.5.11")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.5.12")
   implementation(kotlin("gradle-plugin"))
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.7")
   implementation("org.owasp:dependency-check-core:12.2.0")
@@ -62,7 +62,7 @@ dependencies {
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.5.7")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:4.0.0")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.19")
-  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:14.1.0")
+  implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:14.2.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:6.0.3")
   testImplementation("org.mockito:mockito-junit-jupiter:5.21.0")
