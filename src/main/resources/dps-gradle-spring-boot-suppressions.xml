@@ -101,4 +101,12 @@
     <packageUrl regex="true">^pkg:maven/com\.microsoft\.azure/applicationinsights-core@.*$</packageUrl>
     <cve>CVE-2025-21199</cve>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppression for dompurify issue as only bundled with swagger-ui and swagger docs should only be available in dev.
+    file name: swagger-ui-5.32.2.jar: swagger-ui-bundle.js
+    ]]></notes>
+    <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
+    <vulnerabilityName regex="true">(?s).*ADD_TAGS.*</vulnerabilityName>
+  </suppress>
 </suppressions>
