@@ -9,7 +9,7 @@ plugins {
   id("maven-publish")
   id("com.github.ben-manes.versions") version "0.53.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.19"
-  id("org.owasp.dependencycheck") version "12.2.0"
+  id("org.owasp.dependencycheck") version "12.2.1"
   id("com.adarshr.test-logger") version "4.0.0"
   id("org.jlleitschuh.gradle.ktlint") version "14.2.0"
 }
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "10.1.2"
+version = "10.2.0"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/hmpps-gradle-spring-boot")
@@ -55,8 +55,8 @@ dependencies {
 
   implementation("org.springframework.boot:spring-boot-gradle-plugin:4.0.5")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.7")
-  implementation("org.owasp:dependency-check-core:12.2.0")
-  implementation("org.owasp:dependency-check-gradle:12.2.0")
+  implementation("org.owasp:dependency-check-core:12.2.1")
+  implementation("org.owasp:dependency-check-gradle:12.2.1")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.53.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.5.7")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:4.0.0")
