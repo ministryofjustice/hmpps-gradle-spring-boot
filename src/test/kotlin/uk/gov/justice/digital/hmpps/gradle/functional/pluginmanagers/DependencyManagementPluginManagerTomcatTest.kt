@@ -14,11 +14,11 @@ import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 import java.util.jar.JarFile
 
-class DependencyManagementPluginManagerJacksonTest : GradleBuildTest() {
+class DependencyManagementPluginManagerTomcatTest : GradleBuildTest() {
 
   companion object {
     @JvmStatic
-    fun wrongTransitiveJacksonVersion() = listOf(
+    fun wrongTransitiveTomcatVersion() = listOf(
       arguments(javaProjectDetails(projectDir).copy(buildScript = wrongTransitiveLogbackVersionBuildFile)),
       arguments(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveLogbackVersionBuildFile)),
     )
@@ -28,14 +28,14 @@ class DependencyManagementPluginManagerJacksonTest : GradleBuildTest() {
         id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
       }
       dependencies {
-        implementation("com.fasterxml.jackson.core:jackson-core")
+        implementation("org.springframework.boot:spring-boot-starter-tomcat")
       }
     """.trimIndent()
   }
 
   @ParameterizedTest
-  @MethodSource("wrongTransitiveJacksonVersion")
-  fun `Wrong transitive version of jackson should be overridden by the plugin`(projectDetails: ProjectDetails) {
+  @MethodSource("wrongTransitiveTomcatVersion")
+  fun `Wrong transitive version of tomcat should be overridden by the plugin`(projectDetails: ProjectDetails) {
     makeProject(projectDetails.copy())
 
     val result = buildProject(projectDir, "bootJar")
@@ -44,7 +44,11 @@ class DependencyManagementPluginManagerJacksonTest : GradleBuildTest() {
     val file = findJar(projectDir, projectDetails.projectName)
     val jarContents = JarFile(file).versionedStream().map { it.name }.toList()
     assertThat(jarContents)
-      .doesNotContain("BOOT-INF/lib/jackson-core-2.19.4.jar")
-      .contains("BOOT-INF/lib/jackson-core-2.21.1.jar")
+      .doesNotContain("BOOT-INF/lib/tomcat-embed-core-10.1.53.jar")
+      .doesNotContain("BOOT-INF/lib/tomcat-embed-el-10.1.53.jar")
+      .doesNotContain("BOOT-INF/lib/tomcat-embed-websocket-10.1.53.jar")
+      .contains("BOOT-INF/lib/tomcat-embed-core-10.1.54.jar")
+      .contains("BOOT-INF/lib/tomcat-embed-el-10.1.54.jar")
+      .contains("BOOT-INF/lib/tomcat-embed-websocket-10.1.54.jar")
   }
 }
