@@ -3,13 +3,13 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "2.3.10"
+  kotlin("jvm") version "2.3.20"
   id("com.gradle.plugin-publish") version "2.1.1"
   id("java-gradle-plugin")
   id("maven-publish")
   id("com.github.ben-manes.versions") version "0.53.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.19"
-  id("org.owasp.dependencycheck") version "12.2.0"
+  id("org.owasp.dependencycheck") version "12.2.1"
   id("com.adarshr.test-logger") version "4.0.0"
   id("org.jlleitschuh.gradle.ktlint") version "14.2.0"
 }
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "9.6.0"
+version = "9.7.0"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/hmpps-gradle-spring-boot")
@@ -49,15 +49,15 @@ gradlePlugin {
 
 dependencies {
   // have to not use implementation(kotlin("reflect")) syntax here otherwise useLatestVersions fails
-  implementation("org.jetbrains.kotlin:kotlin-reflect:2.3.10")
+  implementation("org.jetbrains.kotlin:kotlin-reflect:2.3.20")
   // have to not use implementation(kotlin("gradle-plugin")) syntax here otherwise useLatestVersions fails
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.10")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.20")
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.5.12")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.5.13")
   implementation(kotlin("gradle-plugin"))
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.7")
-  implementation("org.owasp:dependency-check-core:12.2.0")
-  implementation("org.owasp:dependency-check-gradle:12.2.0")
+  implementation("org.owasp:dependency-check-core:12.2.1")
+  implementation("org.owasp:dependency-check-gradle:12.2.1")
   implementation("com.github.ben-manes:gradle-versions-plugin:0.53.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.5.7")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:4.0.0")
