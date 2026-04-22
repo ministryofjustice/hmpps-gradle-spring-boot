@@ -114,20 +114,25 @@ Note this may suggest some upgrades on transitive dependencies we generally don'
 
 ## Testing the plugin locally on other projects
 
-* Firstly bump the version of the plugin.
-* Then publish the plugin to local maven
-```
-./gradlew publishToMavenLocal
-```
-* Then change the settings of the dependent project to read plugins from local storage.  In settings.gradle.kts
-```
-pluginManagement {
-  repositories {
-    mavenLocal()
-    gradlePluginPortal()
-  }
-}
-```
+1. Bump the version of the plugin.
+2. Publish the plugin to local maven
+   ```
+   ./gradlew publishToMavenLocal
+   ```
+3. If the dependencies have security vulnerabilities, it can be useful to check that locally so you can see the state of
+   them before and after your changes:
+   1. Run the following Gradle task in the dependent project (not in the plug-in one): `./gradlew dependencyCheckAnalyze`
+   2. If you are using IntelliJ it can be found by going to _Gradle -> hmpps-gradle-spring-boot -> Tasks -> owasp dependency-check -> dependencyCheckAnalyze_
+   3. Additional testing can be done with [Dependency Update Checks](#dependency-update-checks)
+4. Change the settings of the dependent project to read plugins from local storage.  In settings.gradle.kts
+   ```
+   pluginManagement {
+     repositories {
+       mavenLocal()
+       gradlePluginPortal()
+     }
+   }
+   ```
 
 ## Releasing the plugin
 
@@ -176,14 +181,10 @@ A new version may be needed for a few different reasons:
 4. Open the project in your favourite code editor
 5. Bump the library version to the next version
    1. See [Releasing the plugin](#releasing-the-plugin) for help on which version to bump
-6. If the dependencies have security vulnerabilities then it can be useful to check that locally so you can see the state of them before and after your changes 
-   1. Run the following Gradle task: `./gradlew dependencyCheckAnalyze`
-   2. If you are using IntelliJ it can be found by going to _Gradle -> hmpps-gradle-spring-boot -> Tasks -> owasp dependency-check -> dependencyCheckAnalyze_ 
-   3. Additional testing can be done with [Dependency Update Checks](#dependency-update-checks)
-7. Upgrade all the dependencies in `build.gradle.kts` by running the following Gradle task: `./gradlew useLatestVersions`
+6. Upgrade all the dependencies in `build.gradle.kts` by running the following Gradle task: `./gradlew useLatestVersions`
    1. If you are using IntelliJ it can be found by going to _Gradle -> hmpps-gradle-spring-boot -> Tasks -> help -> useLatestVersions_
-8. Run `VersionsPluginManagerTest` (see [How to check if dependencies applied by the HMPPS plugin are up to date](#how-to-check-if-dependencies-applied-by-the-hmpps-plugin-are-up-to-date)) and apply the suggested dependency updates where relevant
-9. Review the pinned versions in `KotlinPluginManager`, `AppInsightsConfigManager`, and any others
+7. Run `VersionsPluginManagerTest` (see [How to check if dependencies applied by the HMPPS plugin are up to date](#how-to-check-if-dependencies-applied-by-the-hmpps-plugin-are-up-to-date)) and apply the suggested dependency updates where relevant
+8. Review the pinned versions in `KotlinPluginManager`, `AppInsightsConfigManager`, and any others
    1. You may need to manually bump, or remove them if they are no longer required
 
 ### Testing locally
