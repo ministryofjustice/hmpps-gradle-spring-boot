@@ -3,11 +3,11 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  kotlin("jvm") version "2.3.20"
+  kotlin("jvm") version "2.3.21"
   id("com.gradle.plugin-publish") version "2.1.1"
   id("java-gradle-plugin")
   id("maven-publish")
-  id("com.github.ben-manes.versions") version "0.53.0"
+  id("com.github.ben-manes.versions") version "0.54.0"
   id("se.patrikerdes.use-latest-versions") version "0.2.19"
   id("org.owasp.dependencycheck") version "12.2.1"
   id("com.adarshr.test-logger") version "4.0.0"
@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "10.2.1"
+version = "10.2.2"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/hmpps-gradle-spring-boot")
@@ -49,15 +49,15 @@ gradlePlugin {
 
 dependencies {
   // have to not use implementation(kotlin("reflect")) syntax here otherwise useLatestVersions fails
-  implementation("org.jetbrains.kotlin:kotlin-reflect:2.3.20")
+  implementation("org.jetbrains.kotlin:kotlin-reflect:2.3.21")
   // have to not use implementation(kotlin("gradle-plugin")) syntax here otherwise useLatestVersions fails
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.20")
+  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.21")
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:4.0.5")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:4.0.6")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.7")
   implementation("org.owasp:dependency-check-core:12.2.1")
   implementation("org.owasp:dependency-check-gradle:12.2.1")
-  implementation("com.github.ben-manes:gradle-versions-plugin:0.53.0")
+  implementation("com.github.ben-manes:gradle-versions-plugin:0.54.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:2.5.7")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:4.0.0")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.19")
@@ -67,7 +67,7 @@ dependencies {
   testImplementation("org.mockito:mockito-junit-jupiter:5.23.0")
   testImplementation("org.assertj:assertj-core:3.27.7")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:5.1.1")
-  testImplementation("com.google.code.gson:gson:2.13.2")
+  testImplementation("com.google.code.gson:gson:2.14.0")
   testImplementation("org.eclipse.jgit:org.eclipse.jgit:7.6.0.202603022253-r")
   testImplementation("org.awaitility:awaitility-kotlin:4.3.0")
 

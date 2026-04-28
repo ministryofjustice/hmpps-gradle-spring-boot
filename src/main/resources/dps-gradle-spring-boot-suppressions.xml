@@ -109,4 +109,36 @@
     <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
     <vulnerabilityName regex="true">(?s).*ADD_TAGS.*</vulnerabilityName>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppressing as false positive by OSSIndex. It is fixed in 7.0.5.
+    file name: spring-security-web-7.0.5.jar
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring-security-web@.*$</packageUrl>
+    <vulnerabilityName>CVE-2026-22747</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppression for dompurify issue as only bundled with swagger-ui and swagger docs should only be available in dev.
+    file name: swagger-ui-5.32.2.jar: swagger-ui-bundle.js
+    ]]></notes>
+    <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
+    <vulnerabilityName>CVE-2026-41238</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppression for dompurify issue as only bundled with swagger-ui and swagger docs should only be available in dev.
+    file name: swagger-ui-5.32.2.jar: swagger-ui-bundle.js
+    ]]></notes>
+    <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
+    <vulnerabilityName>CVE-2026-41239</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppression for dompurify issue as only bundled with swagger-ui and swagger docs should only be available in dev.
+    file name: swagger-ui-5.32.2.jar: swagger-ui-bundle.js
+    ]]></notes>
+    <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
+    <vulnerabilityName>CVE-2026-41240</vulnerabilityName>
+  </suppress>
 </suppressions>
