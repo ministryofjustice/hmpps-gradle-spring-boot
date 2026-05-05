@@ -14,8 +14,6 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
   override fun configure() {
     applyDependencyManagementBom(project)
     project.extensions.extraProperties["opentelemetry.version"] = OPENTELEMETRY_VERSION
-    // temporarily pinning to address multiple CVEs - see 9.7.0 release notes
-    project.extensions.extraProperties["tomcat.version"] = "10.1.54"
   }
 
   private fun applyDependencyManagementBom(project: Project) {

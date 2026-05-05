@@ -30,7 +30,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "9.8.0"
+version = "9.7.1"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/hmpps-gradle-spring-boot")
@@ -53,7 +53,7 @@ dependencies {
   // have to not use implementation(kotlin("gradle-plugin")) syntax here otherwise useLatestVersions fails
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.21")
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.5.13")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:3.5.14")
   implementation(kotlin("gradle-plugin"))
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.7")
   implementation("org.owasp:dependency-check-core:12.2.2")
