@@ -141,4 +141,12 @@
     <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
     <vulnerabilityName>CVE-2026-41240</vulnerabilityName>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppression for dompurify issue as only bundled with swagger-ui and swagger docs should only be available in dev.
+    file name: swagger-ui-5.32.2.jar: swagger-ui-bundle.js
+    ]]></notes>
+    <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
+    <vulnerabilityName>GHSA-39q2-94rc-95cp</vulnerabilityName>
+  </suppress>
 </suppressions>
