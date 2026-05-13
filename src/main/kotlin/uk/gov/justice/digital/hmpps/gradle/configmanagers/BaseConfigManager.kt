@@ -14,7 +14,6 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
     setJunit5()
     copyResourcesFile("sonar-project.properties")
     copyResourcesFile("gradle.properties")
-    copyResourcesFile(".trivyignore")
     copyResourcesFile(".snyk")
   }
 
