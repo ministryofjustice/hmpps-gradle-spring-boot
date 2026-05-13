@@ -12,62 +12,62 @@ import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 import java.io.File
 import java.nio.file.Files
 
-class BaseConfigManagerTrivyignoreTest : GradleBuildTest() {
+class BaseConfigManagerSnykTest : GradleBuildTest() {
   @ParameterizedTest
   @MethodSource("defaultProjectDetails")
-  fun `The trivy ignore file is copied into the project`(projectDetails: ProjectDetails) {
+  fun `The snyk ignore file is copied into the project`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
 
-    val result = buildProject(Companion.projectDir, "tasks")
+    val result = buildProject(projectDir, "tasks")
     assertThat(result.task(":tasks")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
-    val trivyFile = findFile(projectDir, ".trivyignore")
-    assertThat(trivyFile).exists()
+    val snykFile = findFile(projectDir, ".snyk")
+    assertThat(snykFile).exists()
   }
 
   @ParameterizedTest
   @MethodSource("defaultProjectDetails")
-  fun `The trivy ignore file is not copied into the project`(projectDetails: ProjectDetails) {
+  fun `The snyk suppressions file is not copied into the project`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
 
-    val trivyScript =
+    val snykScript =
       """
-# some coverage rules
-trivy.coverage.exclusions=**/*.java,**/*.kt
+version: v1.25.1
+ignore: {}
       """.trimIndent()
-    makeTrivyFile(trivyScript)
+    makeSnykFile(snykScript)
 
-    val result = buildProject(Companion.projectDir, "tasks")
+    val result = buildProject(projectDir, "tasks")
     assertThat(result.task(":tasks")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
-    val trivyFile = findFile(projectDir, ".trivyignore")
-    assertThat(trivyFile).exists()
-    val firstLine = trivyFile.useLines { it.firstOrNull() }
-    assertThat(firstLine).startsWith("# some coverage rules")
+    val snykFile = findFile(projectDir, ".snyk")
+    assertThat(snykFile).exists()
+    val firstLine = snykFile.useLines { it.firstOrNull() }
+    assertThat(firstLine).startsWith("version: v1.25.1")
   }
 
   @ParameterizedTest
   @MethodSource("defaultProjectDetails")
-  fun `The trivy ignore file is overwritten in the project if WARNING exists`(projectDetails: ProjectDetails) {
+  fun `The snyk ignore file is overwritten in the project if WARNING exists`(projectDetails: ProjectDetails) {
     makeProject(projectDetails)
-    val trivyScript =
+    val snykScript =
       """
 # WARNING - contents will be overwritten
-trivy.coverage.exclusions=**/*.java,**/*.kt
+version: v1.25.1
       """.trimIndent()
-    makeTrivyFile(trivyScript)
+    makeSnykFile(snykScript)
 
-    val result = buildProject(Companion.projectDir, "tasks")
+    val result = buildProject(projectDir, "tasks")
     assertThat(result.task(":tasks")?.outcome).isEqualTo(TaskOutcome.SUCCESS)
 
-    val trivyFile = findFile(projectDir, ".trivyignore")
-    assertThat(trivyFile).exists()
-    val firstLine = trivyFile.useLines { it.firstOrNull() }
+    val snykFile = findFile(projectDir, ".snyk")
+    assertThat(snykFile).exists()
+    val firstLine = snykFile.useLines { it.firstOrNull() }
     assertThat(firstLine).startsWith("# WARNING - THIS FILE WAS GENERATED")
   }
 
-  private fun makeTrivyFile(trivyScript: String) {
-    val trivyFile = File(projectDir, ".trivyignore")
-    Files.writeString(trivyFile.toPath(), trivyScript)
+  private fun makeSnykFile(snykScript: String) {
+    val snykFile = File(projectDir, ".snyk")
+    Files.writeString(snykFile.toPath(), snykScript)
   }
 }
