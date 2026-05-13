@@ -15,6 +15,7 @@ class BaseConfigManager(override val project: Project) : ConfigManager {
     copyResourcesFile("sonar-project.properties")
     copyResourcesFile("gradle.properties")
     copyResourcesFile(".trivyignore")
+    copyResourcesFile(".snyk")
   }
 
   private fun setGroupAndVersion() {
