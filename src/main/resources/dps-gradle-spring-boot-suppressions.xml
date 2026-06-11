@@ -149,4 +149,11 @@
     <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
     <vulnerabilityName>GHSA-39q2-94rc-95cp</vulnerabilityName>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppression for baggage limits issue as we use header size limits
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/io\.opentelemetry/opentelemetry-api@.*$</packageUrl>
+    <vulnerabilityName>CVE-2026-45292</vulnerabilityName>
+  </suppress>
 </suppressions>
