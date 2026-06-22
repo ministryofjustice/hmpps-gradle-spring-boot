@@ -12,79 +12,6 @@
     <packageUrl regex="true">^pkg:maven/com\.h2database/h2@.*$</packageUrl>
     <vulnerabilityName>CVE-2018-14335</vulnerabilityName>
   </suppress>
-  <!-- suppressed as we don't run in production with h2 -->
-  <suppress>
-    <notes><![CDATA[
-   file name: h2-2.1.212.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/com\.h2database/h2@.*$</packageUrl>
-    <vulnerabilityName>[sonatype-2020-1324] CWE-94: Improper Control of Generation of Code ('Code Injection')
-    </vulnerabilityName>
-  </suppress>
-  <!-- suppressed as we don't run in production with h2 -->
-  <suppress>
-    <notes><![CDATA[
-   file name: h2-2.1.214.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/com\.h2database/h2@.*$</packageUrl>
-    <cve>CVE-2022-45868</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-     Suppression for checkstyle vulnerability that's being reported for ktlint library.
-     file name: ktlint-cli-reporter-checkstyle-1.0.1.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/com\.pinterest\.ktlint/ktlint\-cli\-reporter\-checkstyle@.*$</packageUrl>
-    <cve>CVE-2019-10782</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-     Suppression for checkstyle vulnerability that's being reported for ktlint library.
-     file name: ktlint-cli-reporter-checkstyle-1.0.1.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/com\.pinterest\.ktlint/ktlint\-cli\-reporter\-checkstyle@.*$</packageUrl>
-    <cve>CVE-2019-9658</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    Suppress as we haven't configured spring to handle JWEs.  We don't encrypt our JWT, as they don't contain
-    sensitive data so they are plain JWS instead. If we did choose to encrypt then we wouldn't use a symmetric
-    algorithms like PBKDF2 since HMPPS Auth would be the only one needing to encrypt.
-    file name: nimbus-jose-jwt-9.24.4.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/com\.nimbusds/nimbus\-jose\-jwt@.*$</packageUrl>
-    <vulnerabilityName>CVE-2023-52428</vulnerabilityName>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    Suppressed as attacker needs a valid auth token to exploit JSON parsing DoS
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/com\.nimbusds/nimbus\-jose\-jwt@.*$</packageUrl>
-    <vulnerabilityName>CVE-2025-53864</vulnerabilityName>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    Suppressed as attacker needs a valid auth token to exploit JSON parsing DoS
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/com\.google\.code\.gson/gson@.*$</packageUrl>
-    <vulnerabilityName>CVE-2025-53864</vulnerabilityName>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    Suppressed as we don't use Apache's ClassUtils.getClass
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.apache\.commons/commons\-lang3@.*$</packageUrl>
-    <vulnerabilityName>CVE-2025-48924</vulnerabilityName>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    Suppressed as false positive matching cpe:2.3:a:trusted_boot_project:trusted_boot:1.7.0:*:*:*:*:*:*:* for some reason.
-    Trusted Boot (tboot) before 1.8.2 has a 'loader.c' Security Bypass Vulnerability.
-    file name: hmpps-kotlin-spring-boot-starter-1.7.0.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/aws\.sdk\.kotlin/dynamodb-mapper-annotations@.*$</packageUrl>
-    <cve>CVE-2014-5118</cve>
-  </suppress>
   <suppress>
     <notes><![CDATA[
     Suppressed as falsely matching cpe:2.3:a:microsoft:azure_agent:3.7.4:*:*:*:*:*:*:*.
@@ -92,30 +19,6 @@
    ]]></notes>
     <packageUrl regex="true">^pkg:maven/com\.microsoft\.azure/applicationinsights-agent@.*$</packageUrl>
     <cve>CVE-2025-21199</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    Suppressed as falsely matching cpe:2.3:a:microsoft:azure_agent:3.7.4:*:*:*:*:*:*:*.
-   file name: applicationinsights-core-3.7.4.jar
-   ]]></notes>
-    <packageUrl regex="true">^pkg:maven/com\.microsoft\.azure/applicationinsights-core@.*$</packageUrl>
-    <cve>CVE-2025-21199</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    Suppression for dompurify issue as only bundled with swagger-ui and swagger docs should only be available in dev.
-    file name: swagger-ui-5.32.2.jar: swagger-ui-bundle.js
-    ]]></notes>
-    <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
-    <vulnerabilityName regex="true">(?s).*ADD_TAGS.*</vulnerabilityName>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    Suppressing as false positive by OSSIndex. It is fixed in 7.0.5.
-    file name: spring-security-web-7.0.5.jar
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring-security-web@.*$</packageUrl>
-    <vulnerabilityName>CVE-2026-22747</vulnerabilityName>
   </suppress>
   <suppress>
     <notes><![CDATA[
@@ -151,9 +54,73 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
+    Suppression for dompurify issue as only bundled with swagger-ui and swagger docs should only be available in dev.
+    file name: swagger-ui-5.32.2.jar: swagger-ui-es-bundle.js
+    ]]></notes>
+    <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
+    <vulnerabilityName>CVE-2026-49458</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppression for dompurify issue as only bundled with swagger-ui and swagger docs should only be available in dev.
+    file name: swagger-ui-5.32.2.jar: swagger-ui-es-bundle.js
+    ]]></notes>
+    <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
+    <vulnerabilityName>CVE-2026-49459</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppression for dompurify issue as only bundled with swagger-ui and swagger docs should only be available in dev.
+    file name: swagger-ui-5.32.2.jar: swagger-ui-es-bundle.js
+    ]]></notes>
+    <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
+    <vulnerabilityName>CVE-2026-49978</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppression for dompurify issue as only bundled with swagger-ui and swagger docs should only be available in dev.
+    file name: swagger-ui-5.32.2.jar: swagger-ui-es-bundle.js
+    ]]></notes>
+    <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
+    <vulnerabilityName>GHSA-76mc-f452-cxcm</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppression for dompurify issue as only bundled with swagger-ui and swagger docs should only be available in dev.
+    file name: swagger-ui-5.32.2.jar: swagger-ui-es-bundle.js
+    ]]></notes>
+    <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
+    <vulnerabilityName>GHSA-gvmj-g25r-r7wr</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppression for dompurify issue as only bundled with swagger-ui and swagger docs should only be available in dev.
+    file name: swagger-ui-5.32.2.jar: swagger-ui-es-bundle.js
+    ]]></notes>
+    <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
+    <vulnerabilityName>GHSA-vxr8-fq34-vvx9</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppression for dompurify issue as only bundled with swagger-ui and swagger docs should only be available in dev.
+    file name: swagger-ui-5.32.2.jar: swagger-ui-es-bundle.js
+    ]]></notes>
+    <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
+    <vulnerabilityName>GHSA-x4vx-rjvf-j5p4</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
     Suppression for baggage limits issue as we use header size limits
     ]]></notes>
     <packageUrl regex="true">^pkg:maven/io\.opentelemetry/opentelemetry-api@.*$</packageUrl>
     <vulnerabilityName>CVE-2026-45292</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Sonatype false positive, this is an old vulnerability that doesn't affect spring security 7.0.6.
+    file name: spring-security-web-7.0.6.jar
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring-security-web@.*$</packageUrl>
+    <vulnerabilityName>CVE-2026-47838</vulnerabilityName>
   </suppress>
 </suppressions>
