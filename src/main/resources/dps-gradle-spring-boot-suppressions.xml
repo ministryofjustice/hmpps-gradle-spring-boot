@@ -110,6 +110,14 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
+    Suppression for dompurify issue as only bundled with swagger-ui and swagger docs should only be available in dev.
+    file name: swagger-ui-5.32.2.jar: swagger-ui-es-bundle.js
+    ]]></notes>
+    <packageUrl regex="true">^pkg:javascript/DOMPurify@.*$</packageUrl>
+    <vulnerabilityName>GHSA-cmwh-pvxp-8882</vulnerabilityName>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
     Suppression for baggage limits issue as we use header size limits
     ]]></notes>
     <packageUrl regex="true">^pkg:maven/io\.opentelemetry/opentelemetry-api@.*$</packageUrl>
