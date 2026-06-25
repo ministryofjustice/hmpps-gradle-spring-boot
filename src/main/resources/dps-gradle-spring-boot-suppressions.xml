@@ -22,6 +22,14 @@
   </suppress>
   <suppress>
     <notes><![CDATA[
+    Suppressed as falsely matching cpe:2.3:a:microsoft:azure_agent:3.7.4:*:*:*:*:*:*:*.
+    file name: applicationinsights-core-3.7.4.jar
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.microsoft\.azure/applicationinsights-core@.*$</packageUrl>
+    <cve>CVE-2025-21199</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
     Suppression for dompurify issue as only bundled with swagger-ui and swagger docs should only be available in dev.
     file name: swagger-ui-5.32.2.jar: swagger-ui-bundle.js
     ]]></notes>
