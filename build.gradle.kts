@@ -53,7 +53,7 @@ dependencies {
   // have to not use implementation(kotlin("gradle-plugin")) syntax here otherwise useLatestVersions fails
   implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.0")
 
-  implementation("org.springframework.boot:spring-boot-gradle-plugin:4.1.0")
+  implementation("org.springframework.boot:spring-boot-gradle-plugin:4.0.7")
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.7")
   implementation("org.owasp:dependency-check-core:12.2.2")
   implementation("org.owasp:dependency-check-gradle:12.2.2")
