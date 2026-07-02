@@ -14,6 +14,8 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
   override fun configure() {
     applyDependencyManagementBom(project)
     project.extensions.extraProperties["opentelemetry.version"] = OPENTELEMETRY_VERSION
+    // TODO Pinned to override 1.5.34 which has a security vulnerability CVE-2026-13006 - remove this when Spring pulls in at least this version
+    project.extensions.extraProperties["logback.version"] = "1.5.37"
   }
 
   private fun applyDependencyManagementBom(project: Project) {
