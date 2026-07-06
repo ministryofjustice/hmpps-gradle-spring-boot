@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.gradle.pluginmanagers
+package uk.gov.justice.digital.hmpps.gradle.functional.pluginmanagers
 
 import org.assertj.core.api.Assertions.assertThat
 import org.gradle.testkit.runner.TaskOutcome

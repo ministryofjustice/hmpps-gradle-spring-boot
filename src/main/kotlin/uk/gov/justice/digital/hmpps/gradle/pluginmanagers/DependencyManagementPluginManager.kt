@@ -17,6 +17,9 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
     project.extensions.extraProperties["tomcat.version"] = "11.0.23"
     // TODO Pinned to override 1.5.34 which has a security vulnerability CVE-2026-13006 - remove this when Spring pulls in at least this version
     project.extensions.extraProperties["logback.version"] = "1.5.37"
+
+    // temporarily pinning the version to address GHSA-72hv-8253-57qq until other dependencies are updated accordingly
+    project.extensions.extraProperties["jackson-2-bom.version"] = JACKSON2_VERSION
   }
 
   private fun applyDependencyManagementBom(project: Project) {
