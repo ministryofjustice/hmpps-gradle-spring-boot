@@ -18,7 +18,7 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
     // TODO Pinned to override 1.5.34 which has a security vulnerability CVE-2026-13006 - remove this when Spring pulls in at least this version
     project.extensions.extraProperties["logback.version"] = "1.5.37"
 
-    // temporarily pinning the version to address GHSA-72hv-8253-57qq until other dependencies are updated accordingly
+    // temporarily pinning the version to address CVE-2026-54512 and CVE-2026-54513 until other dependencies are updated accordingly
     project.extensions.extraProperties["jackson-2-bom.version"] = JACKSON2_VERSION
   }
 
