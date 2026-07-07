@@ -8,7 +8,7 @@ This Gradle plugin is used to orchestrate HMPPS Spring Boot projects such that:
 * Any common build configuration shared by projects is performed in this plugin and not the project itself (removing duplication and subsequent drift)
 * CVEs causing `dependencyCheckAnalyze` failures are mitigated in a single place rather than in each and every project
 
-This plugin targets Spring Boot 3.  See the `spring-boot-2` branch for the Spring Boot 2 version.
+This plugin targets Spring Boot 4.  See the `spring-boot-3` branch for the Spring Boot 3 version.
 
 ## Release Notes
 ##### [10.x](release-notes/10.x.md)
@@ -28,7 +28,7 @@ In your `build.gradle.kts` (or `build.gradle` for Java) add the following line t
 ```
 plugins {
   ...
-  id("uk.gov.justice.hmpps.gradle-spring-boot") version "10.5.2"
+  id("uk.gov.justice.hmpps.gradle-spring-boot") version "10.5.6"
   ...
 }
 ```
