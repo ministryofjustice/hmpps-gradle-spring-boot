@@ -7,7 +7,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import uk.gov.justice.digital.hmpps.gradle.PluginManager
 
 const val JACKSON_VERSION = "3.1.4"
-const val JACKSON2_VERSION = "2.22.0"
+const val JACKSON2_VERSION = "2.21.5"
 
 class KotlinPluginManager(override val project: Project) : PluginManager {
   override val pluginProject = KotlinPluginWrapper::class.java
