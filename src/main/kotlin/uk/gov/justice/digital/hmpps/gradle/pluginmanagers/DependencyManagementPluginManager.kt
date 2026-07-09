@@ -20,6 +20,10 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
 
     // temporarily pinning the version to address CVE-2026-54512 and CVE-2026-54513 until other dependencies are updated accordingly
     project.extensions.extraProperties["jackson-2-bom.version"] = JACKSON2_VERSION
+
+    // temporarily pinning the version to address CVE-2026-54399 and CVE-2026-54428 until other dependencies are updated accordingly
+    project.extensions.extraProperties["httpclient5.version"] = "5.6.2"
+    project.extensions.extraProperties["httpcore5.version"] = "5.4.3"
   }
 
   private fun applyDependencyManagementBom(project: Project) {

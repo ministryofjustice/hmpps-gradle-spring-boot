@@ -14,29 +14,29 @@ import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 import java.util.jar.JarFile
 
-class DependencyManagementPluginManagerJacksonTest : GradleBuildTest() {
+class DependencyManagementPluginManagerHttpClientTest : GradleBuildTest() {
 
   companion object {
     @JvmStatic
-    fun wrongTransitiveJacksonVersion() = listOf(
-      arguments(javaProjectDetails(projectDir).copy(buildScript = wrongTransitiveJacksonVersionBuildFile)),
-      arguments(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveJacksonVersionBuildFile)),
+    fun wrongTransitiveHttpClientVersion() = listOf(
+      arguments(javaProjectDetails(projectDir).copy(buildScript = wrongTransitiveHttpClientVersionBuildFile)),
+      arguments(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveHttpClientVersionBuildFile)),
     )
 
-    private val wrongTransitiveJacksonVersionBuildFile = """
+    private val wrongTransitiveHttpClientVersionBuildFile = """
       plugins {
         id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
       }
       dependencies {
-        implementation("com.fasterxml.jackson.core:jackson-core")
-        implementation("tools.jackson.core:jackson-core")
+        implementation("org.apache.httpcomponents.client5:httpclient5")
+        implementation("org.apache.httpcomponents.core5:httpcore5") 
       }
     """.trimIndent()
   }
 
   @ParameterizedTest
-  @MethodSource("wrongTransitiveJacksonVersion")
-  fun `Wrong transitive version of jackson 2 should be overridden by the plugin`(projectDetails: ProjectDetails) {
+  @MethodSource("wrongTransitiveHttpClientVersion")
+  fun `Wrong transitive version of HttpClient 2 should be overridden by the plugin`(projectDetails: ProjectDetails) {
     makeProject(projectDetails.copy())
 
     val result = buildProject(projectDir, "bootJar")
@@ -45,7 +45,9 @@ class DependencyManagementPluginManagerJacksonTest : GradleBuildTest() {
     val file = findJar(projectDir, projectDetails.projectName)
     val jarContents = JarFile(file).versionedStream().map { it.name }.toList()
     assertThat(jarContents)
-      .doesNotContain("BOOT-INF/lib/jackson-core-2.21.4.jar")
-      .contains("BOOT-INF/lib/jackson-core-2.21.5.jar")
+      .doesNotContain("BOOT-INF/lib/httpclient5-5.6.1.jar")
+      .doesNotContain("BOOT-INF/lib/httpcore5-5.4.2.jar")
+      .contains("BOOT-INF/lib/httpclient5-5.6.2.jar")
+      .contains("BOOT-INF/lib/httpcore5-5.4.3.jar")
   }
 }
