@@ -14,23 +14,22 @@ import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 import java.util.jar.JarFile
 
-class DependencyManagementPluginManagerTomcatTest : GradleBuildTest() {
-
+class DependencyManagementPluginManagerLog4j2Test : GradleBuildTest() {
   companion object {
     @Suppress("unused")
     @JvmStatic
-    fun wrongTransitiveTomcatVersion() = listOf(
-      Arguments.of(javaProjectDetails(projectDir).copy(buildScript = wrongTransitiveTomcatVersionBuildFile())),
-      Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveTomcatVersionBuildFile())),
+    fun wrongLog4j2Version() = listOf(
+      Arguments.of(javaProjectDetails(projectDir).copy(buildScript = wrongLog4j2VersionBuildFile())),
+      Arguments.of(kotlinProjectDetails(projectDir).copy(buildScript = wrongLog4j2VersionBuildFile())),
     )
   }
-  private fun jarContainsTomcatEmbedCore(jar: JarFile, version: String): Boolean = jar.getJarEntry("BOOT-INF/lib/tomcat-embed-core-$version.jar") != null
+  private fun jarContainsLog4j2ToSlf4j(jar: JarFile, version: String): Boolean = jar.getJarEntry("BOOT-INF/lib/log4j-to-slf4j-$version.jar") != null
 
-  private fun jarContainsTomcatEmbedWebsocket(jar: JarFile, version: String): Boolean = jar.getJarEntry("BOOT-INF/lib/tomcat-embed-websocket-$version.jar") != null
+  private fun jarContainsLog4j2Api(jar: JarFile, version: String): Boolean = jar.getJarEntry("BOOT-INF/lib/log4j-api-$version.jar") != null
 
   @ParameterizedTest
-  @MethodSource("wrongTransitiveTomcatVersion")
-  fun `Wrong transitive version of tomcat should be overridden by the plugin`(projectDetails: ProjectDetails) {
+  @MethodSource("wrongLog4j2Version")
+  fun `Wrong version of log4j2 should be overridden by the plugin`(projectDetails: ProjectDetails) {
     makeProject(projectDetails.copy())
 
     val result = buildProject(projectDir, "bootJar")
@@ -38,20 +37,19 @@ class DependencyManagementPluginManagerTomcatTest : GradleBuildTest() {
 
     val file = findJar(projectDir, projectDetails.projectName)
     val jarFile = JarFile(file)
-    assertThat(jarContainsTomcatEmbedCore(jarFile, "11.0.22")).isFalse
-    assertThat(jarContainsTomcatEmbedCore(jarFile, "11.0.24")).isTrue
-    assertThat(jarContainsTomcatEmbedWebsocket(jarFile, "11.0.22")).isFalse
-    assertThat(jarContainsTomcatEmbedWebsocket(jarFile, "11.0.24")).isTrue
+    assertThat(jarContainsLog4j2ToSlf4j(jarFile, "2.25.4")).isFalse
+    assertThat(jarContainsLog4j2ToSlf4j(jarFile, "2.25.5")).isTrue
+    assertThat(jarContainsLog4j2Api(jarFile, "2.25.4")).isFalse
+    assertThat(jarContainsLog4j2Api(jarFile, "2.25.5")).isTrue
   }
 }
 
-private fun wrongTransitiveTomcatVersionBuildFile() = """
+private fun wrongLog4j2VersionBuildFile() = """
     plugins {
       id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
     }
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-security");
         implementation("org.springframework.boot:spring-boot-starter-oauth2-client");
-        
     }
 """.trimIndent()

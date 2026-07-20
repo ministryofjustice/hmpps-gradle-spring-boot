@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.hmpps.gradle.functional.pluginmanagers
+package uk.gov.justice.digital.hmpps.gradle.pluginmanagers
 
 import org.assertj.core.api.Assertions.assertThat
 import org.gradle.testkit.runner.TaskOutcome
@@ -13,30 +13,30 @@ import uk.gov.justice.digital.hmpps.gradle.functional.javaProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.kotlinProjectDetails
 import uk.gov.justice.digital.hmpps.gradle.functional.makeProject
 import java.util.jar.JarFile
+import kotlin.streams.toList
 
-class DependencyManagementPluginManagerJacksonTest : GradleBuildTest() {
+class DependencyManagementPluginManagerNettyTest : GradleBuildTest() {
 
   companion object {
     @JvmStatic
-    fun wrongTransitiveJacksonVersion() = listOf(
-      arguments(javaProjectDetails(projectDir).copy(buildScript = wrongTransitiveJacksonVersionBuildFile)),
-      arguments(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveJacksonVersionBuildFile)),
+    fun wrongTransitiveNettyVersion() = listOf(
+      arguments(javaProjectDetails(projectDir).copy(buildScript = wrongTransitiveNettyVersionBuildFile)),
+      arguments(kotlinProjectDetails(projectDir).copy(buildScript = wrongTransitiveNettyVersionBuildFile)),
     )
 
-    private val wrongTransitiveJacksonVersionBuildFile = """
+    private val wrongTransitiveNettyVersionBuildFile = """
       plugins {
         id("uk.gov.justice.hmpps.gradle-spring-boot") version "0.1.0"
       }
       dependencies {
-        implementation("com.fasterxml.jackson.core:jackson-core")
-        implementation("tools.jackson.core:jackson-core")
+        implementation("org.springframework.boot:spring-boot-starter-webflux")
       }
     """.trimIndent()
   }
 
   @ParameterizedTest
-  @MethodSource("wrongTransitiveJacksonVersion")
-  fun `Wrong transitive version of jackson 2 should be overridden by the plugin`(projectDetails: ProjectDetails) {
+  @MethodSource("wrongTransitiveNettyVersion")
+  fun `Wrong transitive version of netty should be overridden by the plugin`(projectDetails: ProjectDetails) {
     makeProject(projectDetails.copy())
 
     val result = buildProject(projectDir, "bootJar")
@@ -45,14 +45,7 @@ class DependencyManagementPluginManagerJacksonTest : GradleBuildTest() {
     val file = findJar(projectDir, projectDetails.projectName)
     val jarContents = JarFile(file).versionedStream().map { it.name }.toList()
     assertThat(jarContents)
-      .doesNotContain("BOOT-INF/lib/jackson-core-2.21.4.jar")
-      .contains("BOOT-INF/lib/jackson-core-2.21.5.jar")
-    assertThat(jarContents)
-      .doesNotContain("BOOT-INF/lib/jackson-core-3.1.4.jar")
-      .doesNotContain("BOOT-INF/lib/jackson-model-kotlin-3.1.4.jar")
-      .doesNotContain("BOOT-INF/lib/jackson-databind-3.1.4.jar")
-      .contains("BOOT-INF/lib/jackson-core-3.1.5.jar")
-      .doesNotContain("BOOT-INF/lib/jackson-model-kotlin-3.1.5.jar")
-      .doesNotContain("BOOT-INF/lib/jackson-databind-3.1.4.jar")
+      .doesNotContain("BOOT-INF/lib/netty-common-4.2.15.Final.jar")
+      .contains("BOOT-INF/lib/netty-common-4.2.16.Final.jar")
   }
 }
