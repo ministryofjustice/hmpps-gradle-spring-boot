@@ -47,7 +47,7 @@ class DependencyManagementPluginManagerHttpClientTest : GradleBuildTest() {
     assertThat(jarContents)
       .doesNotContain("BOOT-INF/lib/httpclient5-5.6.1.jar")
       .doesNotContain("BOOT-INF/lib/httpcore5-5.4.2.jar")
-      .contains("BOOT-INF/lib/httpclient5-5.6.2.jar")
+      .contains("BOOT-INF/lib/httpclient5-5.6.4.jar")
       .contains("BOOT-INF/lib/httpcore5-5.4.3.jar")
   }
 }
