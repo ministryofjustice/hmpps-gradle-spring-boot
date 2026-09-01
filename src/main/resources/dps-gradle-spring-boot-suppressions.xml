@@ -184,4 +184,12 @@
     <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat-embed-websocket@.*$</packageUrl>
     <cve>CVE-2026-66299</cve>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppressed as only affects opentelemetry-js agent, which we don't use.
+    file name: opentelemetry-*-1.62.0.jar
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/io\.opentelemetry/opentelemetry-.*@.*$</packageUrl>
+    <cve>CVE-2026-54285</cve>
+  </suppress>
 </suppressions>
