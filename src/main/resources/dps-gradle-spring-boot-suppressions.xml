@@ -31,21 +31,6 @@
     <packageUrl regex="true">^pkg:maven/com\.microsoft\.azure/applicationinsights-core@.*$</packageUrl>
     <cve>CVE-2025-21199</cve>
   </suppress>
-  <suppress>
-    <notes><![CDATA[
-    Suppression for baggage limits issue as we use header size limits
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/io\.opentelemetry/opentelemetry-api@.*$</packageUrl>
-    <vulnerabilityName>CVE-2026-45292</vulnerabilityName>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    Sonatype false positive, this is an old vulnerability that doesn't affect spring security 7.0.6.
-    file name: spring-security-web-7.0.6.jar
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.springframework\.security/spring-security-web@.*$</packageUrl>
-    <vulnerabilityName>CVE-2026-47838</vulnerabilityName>
-  </suppress>
   <suppress until="2026-10-01Z">
     <notes><![CDATA[
     Suppressed until 2.4.20 is released (due September 2026).
@@ -54,22 +39,6 @@
     ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin-.*$</packageUrl>
     <cve>CVE-2026-53914</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    Suppressed as only affects the websocket chat example project.
-    file name: tomcat-embed-core-11.0.24.jar
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat-embed-core@.*$</packageUrl>
-    <cve>CVE-2026-66299</cve>
-  </suppress>
-  <suppress>
-    <notes><![CDATA[
-    Suppressed as only affects the websocket chat example project.
-    file name: tomcat-embed-websocket-11.0.24.jar
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat-embed-websocket@.*$</packageUrl>
-    <cve>CVE-2026-66299</cve>
   </suppress>
   <suppress>
     <notes><![CDATA[

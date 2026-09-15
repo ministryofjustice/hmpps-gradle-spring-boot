@@ -23,7 +23,7 @@ class VersionsPluginManager(override val project: Project) : PluginManager {
 
   private fun isStable(version: String): Boolean {
     val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
-    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+    val regex = "^[0-9,.v-]+(-r|-jre|-android)?$".toRegex()
     return stableKeyword || regex.matches(version)
   }
 
