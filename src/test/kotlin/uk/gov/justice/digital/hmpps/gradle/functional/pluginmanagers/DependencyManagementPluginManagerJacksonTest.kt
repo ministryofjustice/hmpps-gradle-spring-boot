@@ -46,13 +46,13 @@ class DependencyManagementPluginManagerJacksonTest : GradleBuildTest() {
     val jarContents = JarFile(file).versionedStream().map { it.name }.toList()
     assertThat(jarContents)
       .doesNotContain("BOOT-INF/lib/jackson-core-2.21.5.jar")
-      .contains("BOOT-INF/lib/jackson-core-2.21.6.jar")
+      .contains("BOOT-INF/lib/jackson-core-2.21.7.jar")
     assertThat(jarContents)
       .doesNotContain("BOOT-INF/lib/jackson-core-3.1.5.jar")
-      .doesNotContain("BOOT-INF/lib/jackson-model-kotlin-3.1.5.jar")
+      .doesNotContain("BOOT-INF/lib/jackson-module-kotlin-3.1.5.jar")
       .doesNotContain("BOOT-INF/lib/jackson-databind-3.1.5.jar")
-      .contains("BOOT-INF/lib/jackson-core-3.1.6.jar")
-      .doesNotContain("BOOT-INF/lib/jackson-model-kotlin-3.1.6.jar")
-      .doesNotContain("BOOT-INF/lib/jackson-databind-3.1.5.jar")
+      .contains("BOOT-INF/lib/jackson-core-3.1.7.jar")
+      .contains("BOOT-INF/lib/jackson-module-kotlin-3.1.7.jar")
+      .contains("BOOT-INF/lib/jackson-databind-3.1.7.jar")
   }
 }

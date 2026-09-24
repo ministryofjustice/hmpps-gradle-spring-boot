@@ -29,7 +29,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "11.0.9"
+version = "11.0.10"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/hmpps-gradle-spring-boot")
@@ -56,14 +56,14 @@ dependencies {
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.7")
   implementation("org.owasp:dependency-check-core:12.2.2")
   implementation("org.owasp:dependency-check-gradle:12.2.2")
-  implementation("io.github.ben-manes:gradle-versions-plugin:0.63.1")
+  implementation("io.github.ben-manes:gradle-versions-plugin:0.64.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:4.0.1")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:4.0.0")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.19")
   implementation("org.jlleitschuh.gradle.ktlint:org.jlleitschuh.gradle.ktlint.gradle.plugin:14.2.0")
 
   testImplementation("org.junit.jupiter:junit-jupiter:6.1.3")
-  testImplementation("org.mockito:mockito-junit-jupiter:5.23.0")
+  testImplementation("org.mockito:mockito-junit-jupiter:5.24.0")
   testImplementation("org.assertj:assertj-core:3.27.7")
   testImplementation("net.javacrumbs.json-unit:json-unit-assertj:6.2.0")
   testImplementation("com.google.code.gson:gson:2.14.0")
