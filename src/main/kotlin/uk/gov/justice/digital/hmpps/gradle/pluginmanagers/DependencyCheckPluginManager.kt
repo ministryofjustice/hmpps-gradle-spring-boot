@@ -30,6 +30,15 @@ class DependencyCheckPluginManager(override val project: Project) : PluginManage
     extension.suppressionFiles.set(mutableListOf(DEPENDENCY_SUPPRESSION_FILENAME))
     extension.format.set(ReportGenerator.Format.ALL.name)
     extension.analyzers.assemblyEnabled.set(false)
+    extension.skipConfigurations.set(
+      mutableListOf(
+        "ktlint",
+        "ktlintBaselineReporter",
+        "ktlintReporter",
+        "ktlintRuleset",
+        "kotlinAbiValidationCompatClasspath",
+      ),
+    )
     if (extension.nvd.datafeedUrl.isPresent.not() && project.hasProperty("datafeed.url")) {
       extension.nvd.datafeedUrl.set(project.property("datafeed.url").toString())
     }

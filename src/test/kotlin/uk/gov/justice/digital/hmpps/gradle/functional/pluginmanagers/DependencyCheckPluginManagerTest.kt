@@ -35,4 +35,41 @@ class DependencyCheckPluginManagerTest : GradleBuildTest() {
     val suppressionFile = findFile(projectDir, DEPENDENCY_SUPPRESSION_FILENAME)
     assertThat(suppressionFile).exists()
   }
+
+  @ParameterizedTest
+  @MethodSource("defaultProjectDetails")
+  fun `Dependency check skips build tool configurations`(projectDetails: ProjectDetails) {
+    makeProject(
+      projectDetails.copy(
+        buildScript = projectDetails.buildScript + skipConfigurationsTask(projectDetails.buildScriptName),
+      ),
+    )
+
+    val result = buildProject(projectDir, "printDependencyCheckSkipConfigurations")
+
+    assertThat(result.output).contains(
+      "[ktlint, ktlintBaselineReporter, ktlintReporter, ktlintRuleset, kotlinAbiValidationCompatClasspath]",
+    )
+  }
+
+  private fun skipConfigurationsTask(buildScriptName: String): String = if (buildScriptName.endsWith(".kts")) {
+    """
+
+    tasks.register("printDependencyCheckSkipConfigurations") {
+      doLast {
+        val extension = project.extensions.getByName("dependencyCheck") as org.owasp.dependencycheck.gradle.extension.DependencyCheckExtension
+        println(extension.skipConfigurations.get())
+      }
+    }
+    """.trimIndent()
+  } else {
+    """
+
+    tasks.register("printDependencyCheckSkipConfigurations") {
+      doLast {
+        println(project.extensions.getByName("dependencyCheck").skipConfigurations.get())
+      }
+    }
+    """.trimIndent()
+  }
 }

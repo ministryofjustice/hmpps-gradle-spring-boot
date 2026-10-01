@@ -31,15 +31,6 @@
     <packageUrl regex="true">^pkg:maven/com\.microsoft\.azure/applicationinsights-core@.*$</packageUrl>
     <cve>CVE-2025-21199</cve>
   </suppress>
-  <suppress until="2026-10-01Z">
-    <notes><![CDATA[
-    Suppressed until 2.4.20 is released (due September 2026).
-    This only affects the kotlin build cache, and we use the gradle build cache that has built in encryption anyway.
-    file name: kotlin-*-2.4.0.jar
-    ]]></notes>
-    <packageUrl regex="true">^pkg:maven/org\.jetbrains\.kotlin/kotlin-.*$</packageUrl>
-    <cve>CVE-2026-53914</cve>
-  </suppress>
   <suppress>
     <notes><![CDATA[
     Suppressed as only affects opentelemetry-js agent, which we don't use.
