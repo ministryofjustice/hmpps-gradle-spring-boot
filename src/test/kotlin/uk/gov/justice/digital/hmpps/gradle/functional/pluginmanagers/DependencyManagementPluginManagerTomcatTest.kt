@@ -39,9 +39,11 @@ class DependencyManagementPluginManagerTomcatTest : GradleBuildTest() {
     val file = findJar(projectDir, projectDetails.projectName)
     val jarFile = JarFile(file)
     assertThat(jarContainsTomcatEmbedCore(jarFile, "11.0.24")).isFalse
-    assertThat(jarContainsTomcatEmbedCore(jarFile, "11.0.25")).isTrue
+    assertThat(jarContainsTomcatEmbedCore(jarFile, "11.0.25")).isFalse
+    assertThat(jarContainsTomcatEmbedCore(jarFile, "11.0.26")).isTrue
     assertThat(jarContainsTomcatEmbedWebsocket(jarFile, "11.0.24")).isFalse
-    assertThat(jarContainsTomcatEmbedWebsocket(jarFile, "11.0.25")).isTrue
+    assertThat(jarContainsTomcatEmbedWebsocket(jarFile, "11.0.25")).isFalse
+    assertThat(jarContainsTomcatEmbedWebsocket(jarFile, "11.0.26")).isTrue
   }
 }
 

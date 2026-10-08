@@ -17,7 +17,7 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
     applyDependencyManagementBom(project)
     project.extensions.extraProperties["opentelemetry.version"] = OPENTELEMETRY_VERSION
 
-    project.extensions.extraProperties["tomcat.version"] = "11.0.25"
+    project.extensions.extraProperties["tomcat.version"] = "11.0.26"
 
     // TODO temporarily pinning for SNYK-JAVA-IONETTY-19778369
     project.extensions.extraProperties["netty.version"] = "4.2.18.Final"
