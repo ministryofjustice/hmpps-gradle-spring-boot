@@ -39,4 +39,12 @@
     <packageUrl regex="true">^pkg:maven/io\.opentelemetry/opentelemetry-.*@.*$</packageUrl>
     <cve>CVE-2026-54285</cve>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+    Suppressed as we don't use JAXB, have no endpoints that accept XML and all SQS/SNS usage is JSON based.
+    file name: jaxb-core-4.0.9.jar
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.glassfish\.jaxb/jaxb-core@.*$</packageUrl>
+    <cve>CVE-2026-92877</cve>
+  </suppress>
 </suppressions>
