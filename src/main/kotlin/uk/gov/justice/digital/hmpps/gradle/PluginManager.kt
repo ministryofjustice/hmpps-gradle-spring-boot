@@ -4,5 +4,5 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 interface PluginManager : ConfigManager {
-  val pluginProject: Class<out Plugin<Project>>
+  val pluginProject: Class<out Plugin<in Project>>
 }
