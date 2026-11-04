@@ -29,7 +29,7 @@ fun isNonStable(version: String): Boolean {
 }
 
 group = "uk.gov.justice.hmpps.gradle"
-version = "11.0.14"
+version = "11.0.15"
 
 gradlePlugin {
   website.set("https://github.com/ministryofjustice/hmpps-gradle-spring-boot")
@@ -56,7 +56,7 @@ dependencies {
   implementation("io.spring.dependency-management:io.spring.dependency-management.gradle.plugin:1.1.7")
   implementation("org.owasp:dependency-check-core:12.2.2")
   implementation("org.owasp:dependency-check-gradle:12.2.2")
-  implementation("io.github.ben-manes:gradle-versions-plugin:0.66.0")
+  implementation("io.github.ben-manes:gradle-versions-plugin:0.67.0")
   implementation("com.gorylenko.gradle-git-properties:com.gorylenko.gradle-git-properties.gradle.plugin:4.0.1")
   implementation("com.adarshr.test-logger:com.adarshr.test-logger.gradle.plugin:4.0.0")
   implementation("se.patrikerdes.use-latest-versions:se.patrikerdes.use-latest-versions.gradle.plugin:0.2.19")
