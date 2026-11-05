@@ -29,7 +29,7 @@ class KotlinPluginManager(override val project: Project) : PluginManager {
   }
 
   companion object {
-    const val JACKSON_VERSION = "3.1.8"
-    const val JACKSON2_VERSION = "2.21.8"
+    const val JACKSON_VERSION = "3.2.4"
+    const val JACKSON2_VERSION = "2.22.4"
   }
 }

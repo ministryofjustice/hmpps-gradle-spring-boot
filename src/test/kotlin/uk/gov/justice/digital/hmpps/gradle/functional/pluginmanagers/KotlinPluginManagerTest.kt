@@ -46,7 +46,7 @@ class KotlinPluginManagerTest : GradleBuildTest() {
     makeProject(projectDetails)
 
     val webVersion = getDependencyVersion(projectDir, "com.fasterxml.jackson.module:jackson-module-kotlin")
-    assertThat(webVersion).isNotBlank
+    assertThat(webVersion).isEqualTo("2.22.4")
   }
 
   @ParameterizedTest
@@ -55,7 +55,7 @@ class KotlinPluginManagerTest : GradleBuildTest() {
     makeProject(projectDetails)
 
     val webVersion = getDependencyVersion(projectDir, "tools.jackson.module:jackson-module-kotlin")
-    assertThat(webVersion).isNotBlank
+    assertThat(webVersion).isEqualTo("3.2.4")
   }
 
   @ParameterizedTest
