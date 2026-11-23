@@ -24,4 +24,16 @@ class DependencyManagementPluginManagerTest : GradleBuildTest() {
 
     assertThat(webVersion).isEqualTo(actuatorVersion).isEqualTo(validatorVersion)
   }
+
+  @ParameterizedTest
+  @MethodSource("defaultProjectDetails")
+  fun `Commons Codec uses the overridden dependency version`(projectDetails: ProjectDetails) {
+    makeProject(
+      projectDetails.copy(
+        buildScript = projectDetails.buildScript + "\ndependencies { implementation(\"commons-codec:commons-codec\") }\n",
+      ),
+    )
+
+    assertThat(getDependencyVersion(projectDir, "commons-codec:commons-codec")).isEqualTo("1.23.0")
+  }
 }
