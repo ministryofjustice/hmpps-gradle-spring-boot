@@ -13,6 +13,7 @@ class DependencyManagementPluginManager(override val project: Project) : PluginM
 
   override fun configure() {
     applyDependencyManagementBom(project)
+    project.extensions.extraProperties["commons-codec.version"] = "1.23.0" // Fix CVE-2026-124077
     project.extensions.extraProperties["opentelemetry.version"] = OPENTELEMETRY_VERSION
   }
 
